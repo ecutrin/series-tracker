@@ -7,7 +7,7 @@ namespace :db do
     desc 'Populate random TV series'
     task populate_sample_data: :environment do
 	10.times do |iter| 
-	   Serie.create!(title: "Title #{iter}", picture: "Picture #{iter}")
+	   Serie.create!(title: "Title #{iter}", picture: "http://placecreature.com/200/300")
 	end
     end
 end

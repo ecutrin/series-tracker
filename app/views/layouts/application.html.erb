@@ -6,8 +6,28 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
+
+<body>
+<header>
+<section id="stuck_container">
+<div class="container">
+    <div class="row">
+	<div class="grid_12">
+	    <div class="navigation">
+		<nav>
+		<ul class="sf-menu">
+		    <li class="current"><a href="#">home</a></li>
+		    <li><a href="#">about</a></li>
+		</ul>
+		</nav>        
+		<div class="clear"></div>
+	    </div>
+	</div>
+    </div>
+</div>
+</section> 
+</header>
 <%= yield %>
 
 </body>
