@@ -26,6 +26,7 @@ class SeriesService
   end
 
   def find_by_keyword keyword
+    Array.new
   end
 
 end

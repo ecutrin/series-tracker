@@ -19,12 +19,19 @@ describe SeriesController do
   describe "#search" do
     it "should show all the series in the Movie DB that match the keyword" do
       keyword = "diaries"
-      @controller.search(keyword)
+
+      get :search, :keyword => keyword
 
       expect(@series_service).to have_received(:find_by_keyword).with(keyword)
     end
 
     it "should render a Not Found page if no shows match the criteria" do
+      keyword = "diaries"
+      allow(@series_service).to receive(:find_by_keyword).with(keyword) { Array.new }
+
+      get :search, :keyword => keyword
+
+      expect(response).to render_template ("not_found")
     end
   end
 end

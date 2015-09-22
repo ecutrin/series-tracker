@@ -6,8 +6,11 @@ class SeriesController < ApplicationController
     @series = @series_service.find_shows(Shows.instance.get)
   end
 
-  def search keyword
-    @series = @series_service.find_by_keyword(keyword)
+  def search
+    @series = @series_service.find_by_keyword(params[:keyword])
+    if @series.empty?
+      render "not_found"
+    end
   end
 
   def load_series_service(service = SeriesService.build)
