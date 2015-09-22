@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'adapters/movie_adapter'
 
 describe MovieAdapter do
 
