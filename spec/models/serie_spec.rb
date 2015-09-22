@@ -6,4 +6,10 @@ describe Serie do
 
     expect(serie.picture_url).to eq(Serie.BASE_URL + "cover.jpg")
   end
+
+  it "should have a Not found image if picture URL was not set" do
+    serie = Serie.new("The Simpsons", nil)
+
+    expect(serie.picture_url).to eq(Serie.NOT_FOUND_IMAGE)
+  end
 end
