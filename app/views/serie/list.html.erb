@@ -1,20 +1,10 @@
 <section class="content">
 <div class="container">
-    <div class="row">
-	<% @series.each do |serie| %>
-	<div class="grid_4">
-	    <div class="banner">
-		<div class="gall_block">
-		    <img src="<%= serie.picture_url %>" alt="">
-		    <div class="bann_capt ">
-			<div class="maxheight">
-			    <div class="bann_title"><%= serie.title %></div>
-			</div>
-		    </div>
-		</div>
-	    </div>
-	</div>
-	<% end %>
-    </div>
+  <div class="row">
+    <% @series.each do |serie| %>
+      <img src="<%= serie.picture_url %>" alt=""/>
+      <div class="bann_title"><%= serie.title %></div>
+    <% end %>
+  </div>
 </div>
 </section>
