@@ -1,4 +1,4 @@
-class SerieService
+class SeriesService
   attr_reader :adapter
 
   def self.build
@@ -23,6 +23,9 @@ class SerieService
       series << get_info(show_id)
     end
     series
+  end
+
+  def find_by_keyword keyword
   end
 
 end

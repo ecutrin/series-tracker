@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  get 'serie/list'
+  get 'series/list'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'serie#list'
+   root 'series#list'
 
+   resources :series do
+     collection do
+       get 'search'
+     end
+   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

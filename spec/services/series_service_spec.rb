@@ -1,14 +1,14 @@
 require 'rails_helper'
-require 'serie_service'
+require 'series_service'
 
-describe SerieService do
+describe SeriesService do
   let(:show_info_payload) { JSON.parse({:original_name => "Beauty and the Beast", :poster_path => "some_path"}.to_json) }
   let(:show_id) { "44606" }
 
   describe "#get_info" do
     it "should return a Serie with valid information" do
       movie_adapter = double("movie_adapter")
-      service = SerieService.new(movie_adapter)
+      service = SeriesService.new(movie_adapter)
       allow(movie_adapter).to receive(:get_show_info).with(show_id) { show_info_payload }
 
       serie = service.get_info(show_id)
@@ -21,7 +21,7 @@ describe SerieService do
   describe "#find_shows" do
     it "should return a list of series with valid information" do
       movie_adapter = double("movie_adapter")
-      service = SerieService.new(movie_adapter)
+      service = SeriesService.new(movie_adapter)
       show_ids = [1, 2]
 
       show_ids.each do |show_id|
