@@ -9,26 +9,24 @@
 
 
 <body>
-<header>
 <section id="stuck_container">
 <div class="container">
-    <div class="row">
-	<div class="grid_12">
-	    <div class="navigation">
-		<nav>
-		<ul class="sf-menu">
-		    <li class="current"><a href="#">home</a></li>
-		    <li><a href="#">about</a></li>
-		</ul>
-		</nav>        
-		<div class="clear"></div>
-	    </div>
-	</div>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Series Tracker</a>
     </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <%= yield %>
 </div>
 </section> 
-</header>
-<%= yield %>
 
 </body>
 </html>
