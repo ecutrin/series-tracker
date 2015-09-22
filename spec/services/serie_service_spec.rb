@@ -14,7 +14,7 @@ describe SerieService do
       serie = service.get_info(show_id)
 
       expect(serie.title).to eq("Beauty and the Beast")
-      expect(serie.picture_url).to eq("some_path")
+      expect(serie.picture_url).to include("some_path")
     end
   end
 
