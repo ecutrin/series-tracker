@@ -15,7 +15,11 @@ class MovieAdapter
     new(endpoint_url, key)
   end
 
-  def get_show_info(show_id)
+  def get_show_info show_id
     response = HTTParty.get("#{@endpoint_url}/#{show_id}?api_key=#{@key}")
+  end
+
+  def find_by_keyword keyword
+    response = HTTParty.get("http://api.themoviedb.org/3/search/tv?api_key=#{@key}&query=#{keyword}")
   end
 end

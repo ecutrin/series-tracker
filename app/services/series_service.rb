@@ -26,7 +26,17 @@ class SeriesService
   end
 
   def find_by_keyword keyword
-    Array.new
+    response = @movie_adapter.find_by_keyword(keyword)
+    total_results = response["total_results"]
+    if total_results == 0
+      Array.new
+    else
+      series = []
+      response["results"].each do |show_info|
+	series << Serie.new(show_info["original_name"], show_info["poster_path"])
+      end
+      series
+    end
   end
 
 end
