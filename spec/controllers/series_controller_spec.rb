@@ -9,10 +9,20 @@ describe SeriesController do
   end
 
   describe "#list" do
-    it "should show all the series that user is interested in" do
+    it "should show all the series that the user has tracked" do
+      serie = Serie.new({:show_id => "123", :title => "Boo", :picture_url => "pic"})
+      serie.save
+
       get :index
 
-      expect(@series_service).to have_received(:find_shows).with(Shows.instance.get)
+      expect(response).to render_template ("index")
+      expect(assigns(:series).first).to eq(serie)
+    end
+
+    it "should show a No shows have been tracked page if no series have been tracked" do
+      get :index
+
+      expect(response).to render_template("no_series_tracked")
     end
   end
 

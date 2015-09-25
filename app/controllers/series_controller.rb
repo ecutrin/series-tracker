@@ -3,7 +3,10 @@ class SeriesController < ApplicationController
   before_filter :load_series_service
 
   def index
-    @series = @series_service.find_shows(Shows.instance.get)
+    @series = Serie.all
+    if @series.empty?
+      render "no_series_tracked"
+    end
   end
 
   def search
