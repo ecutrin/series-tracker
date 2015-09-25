@@ -22,4 +22,8 @@ class MovieAdapter
   def find_by_keyword keyword
     response = HTTParty.get("http://api.themoviedb.org/3/search/tv?api_key=#{@key}&query=#{keyword}")
   end
+
+  def get_season_info(show_id, season_number)
+    response = HTTParty.get("#{@endpoint_url}/#{show_id}/season/#{season_number}?api_key=#{@key}")
+  end
 end

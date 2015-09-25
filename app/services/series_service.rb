@@ -40,7 +40,29 @@ class SeriesService
   end
 
   def track serie
+    serie_id = serie[:show_id]
     serie.save
+
+    response = @movie_adapter.get_show_info(serie_id)
+    season_count = response["number_of_seasons"].to_i
+
+    season_count.times do |season|
+      episodes = get_episode_info(serie_id, season + 1)
+
+      episodes.each do |episode|
+	Episode.create(:serie_id => serie.id,
+		       :number => episode["episode_number"],
+		       :season => episode["season_number"],
+		       :air_date => episode["air_date"])
+      end
+    end
+  end
+
+  private
+
+  def get_episode_info(serie_id, season)
+    response = @movie_adapter.get_season_info(serie_id, season)
+    response["episodes"]
   end
 
 end
