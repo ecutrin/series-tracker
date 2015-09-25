@@ -80,8 +80,14 @@ describe SeriesService do
 
   describe "#track" do
     it "should return a valid response if it's able to start tracking the serie" do
-      pending("TODO")
-      fail
+      serie = Serie.new(:show_id => "12345",
+		       	:title => "Brand new serie",
+		        :picture_url => "some_pic.jpg")
+      initial_count_of_series = Serie.count
+
+      @service.track(serie)
+
+      expect(Serie.count).to eq(initial_count_of_series + 1)
     end
 
     it "should return an error code if there's a problem tracking the serie" do

@@ -48,7 +48,7 @@ class SeriesService
   end
 
   def track serie
-    
+    serie.save
   end
 
 end
