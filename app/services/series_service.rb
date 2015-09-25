@@ -20,14 +20,6 @@ class SeriesService
 	      :show_id => show_id)
   end
 
-  def find_shows(show_ids)
-    series = []
-    show_ids.each do |show_id|
-      series << get_info(show_id)
-    end
-    series
-  end
-
   def find_by_keyword keyword
     response = @movie_adapter.find_by_keyword(keyword)
     total_results = response["total_results"]

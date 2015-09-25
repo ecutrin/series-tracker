@@ -21,31 +21,6 @@ describe SeriesService do
     end
   end
 
-  describe "#find_shows" do
-    it "should return a list of series with valid information" do
-      show_ids = [1, 2]
-
-      show_ids.each do |show_id|
-	expect(@movie_adapter).to receive(:get_show_info).with(show_id) { show_info_payload }
-      end
-
-      series = @service.find_shows(show_ids)
-
-      expect(series.size).to eq(2)
-      expect(series.first[:title]).to eq("Beauty and the Beast")
-    end
-
-    it "should raise an exception if no series are found" do
-      pending("TODO")
-      fail
-    end
-
-    it "should raise an exception if there is a problem contacting the external APi" do
-      pending("TODO")
-      fail
-    end
-  end
-
   describe "#find_by_keyword" do
     let(:keyword) { "diaries" }
     it "should return a list of series whose title match the keyword" do
