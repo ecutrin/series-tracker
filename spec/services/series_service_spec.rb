@@ -2,7 +2,8 @@ require 'rails_helper'
 require 'series_service'
 
 describe SeriesService do
-  let(:show_info_payload) { JSON.parse({:original_name => "Beauty and the Beast", 
+  let(:show_info_payload) { JSON.parse({:id => "3456",
+    					:original_name => "Beauty and the Beast", 
 				        :poster_path => "some_path",
  					:number_of_seasons => "2"}.to_json)
  					}
@@ -21,6 +22,8 @@ describe SeriesService do
 
       expect(serie[:title]).to eq("Beauty and the Beast")
       expect(serie[:picture_url]).to include("some_path")
+      expect(serie[:show_id]).to eq("3456")
+      expect(serie[:number_of_seasons]).to eq(2)
     end
   end
 

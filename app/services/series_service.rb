@@ -14,10 +14,12 @@ class SeriesService
     title = response["original_name"]
     picture_url = response["poster_path"]
     show_id = response["id"]
+    number_of_seasons = response["number_of_seasons"]
 
     Serie.new(:title => title,
 	      :picture_url => picture_url,
-	      :show_id => show_id)
+	      :show_id => show_id,
+	      :number_of_seasons => number_of_seasons)
   end
 
   def find_by_keyword keyword

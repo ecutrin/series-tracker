@@ -5,6 +5,7 @@ describe SeriesController do
   before(:each) do
     @controller = SeriesController.new
     @series_service = controller.load_series_service(spy "serie_service")
+    @episode_service = controller.load_episodes_service(spy "episode_service")
   end
 
   describe "#list" do
@@ -22,6 +23,28 @@ describe SeriesController do
       get :index
 
       expect(response).to render_template("no_series_tracked")
+    end
+  end
+
+  describe "#show" do
+    it "should display the show's basic info as well as the seasons' info" do
+      serie = Serie.create(:show_id => "123", :title => "Boo", :picture_url => "pic", :number_of_seasons => 2)
+      episode1_1 = Episode.create(:serie_id => serie.id,
+				  :number => "1",
+		                  :season => "1",
+			          :air_date => "2015-06-06")
+      episode2_1 = Episode.create(:serie_id => serie.id,
+		       	          :number => "1",
+		                  :season => "2",
+			          :air_date => "2015-09-06")
+      allow(@episode_service).to receive(:get_all_for_season).with(serie.id.to_s, 1) { [episode1_1]}
+      allow(@episode_service).to receive(:get_all_for_season).with(serie.id.to_s, 2) { [episode2_1]}
+
+      get :show, :id => serie.id
+
+      expect(assigns(:serie)).to eq(serie)
+      expect(assigns(:episodes)).to eq({"1" => [episode1_1], 
+      					"2" => [episode2_1]})
     end
   end
 

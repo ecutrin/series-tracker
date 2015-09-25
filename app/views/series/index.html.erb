@@ -4,7 +4,7 @@
     <div class="thumbnail">
       <img src="<%= serie.picture_url %>" alt="<%= serie[:title] %>"/>
       <div class="caption">
-        <h4><%= serie[:title] %></h4>
+	<h4><%= link_to serie[:title], series_path(serie.id) %></h4>
       </div>
     </div>
   </div>

@@ -1,0 +1,12 @@
+<ul class="nav nav-tabs">
+  <% @serie[:number_of_seasons].times do |season| %>
+    <li role="presentation" class="active">
+      <a>Season <%= season + 1 %></a>
+      <ul>
+	<% @episodes["#{season + 1}"].each do |episode| %>
+	  <li><%= episode[:number] %></li>
+	<% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
