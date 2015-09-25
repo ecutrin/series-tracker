@@ -8,6 +8,9 @@ Rails.application.routes.draw do
    root 'series#list'
 
    resources :series do
+     member do
+       post 'track'
+     end
      collection do
        get 'search'
      end

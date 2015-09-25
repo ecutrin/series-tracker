@@ -13,6 +13,15 @@ class SeriesController < ApplicationController
     end
   end
 
+  def track
+    serie = Serie.new(:show_id => params[:id],
+		      :title => params[:title], 
+		      :picture_url => params[:picture_url])
+    @series_service.track(serie)
+    flash.now[:success] = "Show tracked"
+    redirect_to search_series_index_url
+  end
+
   def load_series_service(service = SeriesService.build)
     @series_service ||= service
   end

@@ -16,8 +16,8 @@ describe SeriesService do
 
       serie = @service.get_info(show_id)
 
-      expect(serie.title).to eq("Beauty and the Beast")
-      expect(serie.picture_url).to include("some_path")
+      expect(serie[:title]).to eq("Beauty and the Beast")
+      expect(serie[:picture_url]).to include("some_path")
     end
   end
 
@@ -32,7 +32,7 @@ describe SeriesService do
       series = @service.find_shows(show_ids)
 
       expect(series.size).to eq(2)
-      expect(series[0].title).to eq("Beauty and the Beast")
+      expect(series.first[:title]).to eq("Beauty and the Beast")
     end
 
     it "should raise an exception if no series are found" do
@@ -60,7 +60,7 @@ describe SeriesService do
       series = @service.find_by_keyword(keyword)
 
       expect(series.size).to eq(2)
-      expect(series.first.title).to eq("First serie")
+      expect(series.first[:title]).to eq("First serie")
     end
 
     it "should return an empty array if no series match the criteria" do
@@ -70,6 +70,23 @@ describe SeriesService do
       series = @service.find_by_keyword(keyword)
 
       expect(series).to eq([])
+    end
+
+    it "should handle if response is nil (invalid)" do
+      pending("TODO")
+      fail
+    end
+  end
+
+  describe "#track" do
+    it "should return a valid response if it's able to start tracking the serie" do
+      pending("TODO")
+      fail
+    end
+
+    it "should return an error code if there's a problem tracking the serie" do
+      pending("TODO")
+      fail
     end
   end
 end

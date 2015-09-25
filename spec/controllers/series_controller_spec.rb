@@ -34,4 +34,33 @@ describe SeriesController do
       expect(response).to render_template ("not_found")
     end
   end
+
+  describe "#track" do
+    show_id = "12345"
+    title = "Serie 1"
+    picture_url = "photo.jpg"
+
+    it "should call the service to track a specific show" do
+      pending("Fix this")
+      fail
+      spy = spy("serie")
+      serie = Serie.new({:show_id => show_id, :title => title, :picture_url => picture_url})
+      post :track, :id => show_id, :title => title, :picture_url => picture_url
+
+      expect(@series_service).to have_received(:track)
+      expect(spy).to eql(serie)
+    end
+    
+    it "should redirect to the search page" do
+      post :track, :id => show_id
+
+      expect(response).to redirect_to search_series_index_url
+    end
+
+    it "should show a successful message if it was able to start tracking the show" do
+      post :track, :id => "12345"
+
+      expect(flash.now[:success]).to be_present
+    end
+  end
 end

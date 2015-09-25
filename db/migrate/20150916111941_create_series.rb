@@ -2,7 +2,7 @@ class CreateSeries < ActiveRecord::Migration
   def change
     create_table :series do |t|
       t.string :title
-      t.string :picture
+      t.string :picture_url
 
       t.timestamps null: false
     end

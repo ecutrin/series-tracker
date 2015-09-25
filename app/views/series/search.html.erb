@@ -8,7 +8,9 @@
     <tr>
       <td><img class="serie-thumbnail" src="<%= serie.picture_url %>"/></td>
       <td><%= serie.title %></td>
-      <td><button type="button" class="btn btn-primary">Track</button></td>
+      <td>
+	<%= link_to "Track", track_series_path(1), method: :post %>
+      </td>
     </tr>
   <% end %>
 </table>

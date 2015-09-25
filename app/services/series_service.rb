@@ -13,8 +13,11 @@ class SeriesService
     response = @movie_adapter.get_show_info(show_id)
     title = response["original_name"]
     picture_url = response["poster_path"]
+    show_id = response["id"]
 
-    Serie.new(title, picture_url)
+    Serie.new(:title => title,
+	      :picture_url => picture_url,
+	      :show_id => show_id)
   end
 
   def find_shows(show_ids)
@@ -33,10 +36,19 @@ class SeriesService
     else
       series = []
       response["results"].each do |show_info|
-	series << Serie.new(show_info["original_name"], show_info["poster_path"])
+	title = show_info["original_name"]
+	picture_url = show_info["poster_path"]
+	show_id = show_info["id"] 
+	series << Serie.new(:title=> title,
+		   	     :picture_url => picture_url,
+		   	     :show_id=> show_id)
       end
       series
     end
+  end
+
+  def track serie
+    
   end
 
 end
