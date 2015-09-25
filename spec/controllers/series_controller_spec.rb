@@ -10,7 +10,7 @@ describe SeriesController do
 
   describe "#list" do
     it "should show all the series that user is interested in" do
-      @controller.list
+      get :index
 
       expect(@series_service).to have_received(:find_shows).with(Shows.instance.get)
     end
@@ -41,20 +41,18 @@ describe SeriesController do
     picture_url = "photo.jpg"
 
     it "should call the service to track a specific show" do
-      pending("Fix this")
-      fail
-      spy = spy("serie")
       serie = Serie.new({:show_id => show_id, :title => title, :picture_url => picture_url})
+      allow(@series_service).to receive(:get_info).with(show_id) { serie }
+
       post :track, :id => show_id, :title => title, :picture_url => picture_url
 
-      expect(@series_service).to have_received(:track)
-      expect(spy).to eql(serie)
+      expect(@series_service).to have_received(:track).with(serie)
     end
     
     it "should redirect to the search page" do
       post :track, :id => show_id
 
-      expect(response).to redirect_to search_series_index_url
+      expect(response).to redirect_to series_index_url
     end
 
     it "should show a successful message if it was able to start tracking the show" do

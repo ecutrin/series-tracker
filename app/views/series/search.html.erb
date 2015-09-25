@@ -9,7 +9,7 @@
       <td><img class="serie-thumbnail" src="<%= serie.picture_url %>"/></td>
       <td><%= serie.title %></td>
       <td>
-	<%= link_to "Track", track_series_path(1), method: :post %>
+	<%= link_to "Track", track_series_path(serie[:show_id]), method: :post %>
       </td>
     </tr>
   <% end %>

@@ -2,7 +2,7 @@ class SeriesController < ApplicationController
   attr_reader :series_service
   before_filter :load_series_service
 
-  def list
+  def index
     @series = @series_service.find_shows(Shows.instance.get)
   end
 
@@ -14,12 +14,10 @@ class SeriesController < ApplicationController
   end
 
   def track
-    serie = Serie.new(:show_id => params[:id],
-		      :title => params[:title], 
-		      :picture_url => params[:picture_url])
+    serie = @series_service.get_info(params[:id])
     @series_service.track(serie)
     flash.now[:success] = "Show tracked"
-    redirect_to search_series_index_url
+    redirect_to series_index_url
   end
 
   def load_series_service(service = SeriesService.build)
