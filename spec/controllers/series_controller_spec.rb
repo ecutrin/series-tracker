@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'series_controller'
-require 'shows'
 
 describe SeriesController do
   before(:each) do
