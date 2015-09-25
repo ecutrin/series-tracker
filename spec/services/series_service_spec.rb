@@ -68,14 +68,17 @@ describe SeriesService do
       show_id = serie[:show_id]
       season_1_info = JSON.parse({:episodes => [{:episode_number => "1",
       						 :season_nunmber => "1",
-      						 :air_date => "2012-10-11"},
+      						 :air_date => "2012-10-11",
+      						 :name => "Who Am I?"},
      						{:episode_number => "2",
       						 :season_nunmber => "1",
-      						 :air_date => "2012-10-18"}]
+      						 :air_date => "2012-10-18",
+      						 :name => "Sunshine"}]
       				 }.to_json)
       season_2_info = JSON.parse({:episodes => [{:episode_number => "1",
       						 :season_nunmber => "2",
-      						 :air_date => "2013-10-07"}]
+      						 :air_date => "2013-10-07",
+      						 :name => "Birthday"}]
       				 }.to_json)
 
       allow(@movie_adapter).to receive(:get_show_info).with(show_id) { show_info_payload }
@@ -94,7 +97,9 @@ describe SeriesService do
     it "should save all episode information for the serie" do
       @service.track(serie)
 
-      expect(Episode.where(serie_id: serie.id).size).to eq(3)
+      actual_episodes = Episode.where(serie_id: serie.id)
+      expect(actual_episodes.size).to eq(3)
+      expect(actual_episodes.first[:name]).to eq("Who Am I?")
     end
 
     it "should return an error code if there's a problem tracking the serie" do

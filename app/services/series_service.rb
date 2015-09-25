@@ -55,7 +55,8 @@ class SeriesService
 	Episode.create(:serie_id => serie.id,
 		       :number => episode["episode_number"],
 		       :season => episode["season_number"],
-		       :air_date => episode["air_date"])
+		       :air_date => episode["air_date"],
+		       :name => episode["name"])
       end
     end
   end

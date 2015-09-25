@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925175920) do
+ActiveRecord::Schema.define(version: 20150925184226) do
 
   create_table "episodes", force: :cascade do |t|
     t.integer  "serie_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150925175920) do
     t.date     "air_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   add_index "episodes", ["serie_id"], name: "index_episodes_on_serie_id"
