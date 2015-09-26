@@ -10,6 +10,13 @@ class Serie < ActiveRecord::Base
     self[:picture_url].nil? ? NOT_FOUND_IMAGE : BASE_URL + self[:picture_url]
   end
 
+  def last_episode_watched
+    if self[:last_episode_watched_id].nil?
+      return {}
+    end
+    Episode.find(self[:last_episode_watched_id])
+  end
+
   def self.BASE_URL
     BASE_URL
   end

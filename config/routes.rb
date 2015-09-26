@@ -13,6 +13,11 @@ Rails.application.routes.draw do
      collection do
        get 'search'
      end
+     resources :episodes do
+       member do
+	 post 'last'
+       end
+     end
    end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

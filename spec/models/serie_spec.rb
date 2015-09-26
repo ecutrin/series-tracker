@@ -16,4 +16,13 @@ describe Serie do
 
     expect(serie.picture_url).to eq(Serie.NOT_FOUND_IMAGE)
   end
+
+  it "should be able to return Last episode watched" do
+    episode = Episode.create
+    serie = Serie.new(:last_episode_watched_id => episode.id)
+
+    actual_episode = serie.last_episode_watched
+
+    expect(actual_episode).to eq(episode)
+  end
 end
