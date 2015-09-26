@@ -3,7 +3,7 @@ require 'series_service'
 
 describe SeriesService do
   let(:show_info_payload) { JSON.parse({:id => "3456",
-    					:original_name => "Beauty and the Beast", 
+    					:name => "Beauty and the Beast", 
 				        :poster_path => "some_path",
  					:number_of_seasons => "2"}.to_json)
  					}
@@ -31,9 +31,9 @@ describe SeriesService do
     let(:keyword) { "diaries" }
     it "should return a list of series whose title match the keyword" do
       search_payload = JSON.parse({:total_results => "2",
-				   :results => [{:original_name => "First serie",
+				   :results => [{:name => "First serie",
 				     		 :poster_path => "picture_1.jpg"}, 
-						{:original_name => "Second serie", 
+						{:name => "Second serie", 
 						 :poster_path => "picture_2.jpg"}]
       				  }.to_json)
       expect(@movie_adapter).to receive(:find_by_keyword).with(keyword) { search_payload }

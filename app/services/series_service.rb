@@ -11,7 +11,7 @@ class SeriesService
 
   def get_info(show_id)
     response = @movie_adapter.get_show_info(show_id)
-    title = response["original_name"]
+    title = response["name"]
     picture_url = response["poster_path"]
     show_id = response["id"]
     number_of_seasons = response["number_of_seasons"]
@@ -30,7 +30,7 @@ class SeriesService
     else
       series = []
       response["results"].each do |show_info|
-	title = show_info["original_name"]
+	title = show_info["name"]
 	picture_url = show_info["poster_path"]
 	show_id = show_info["id"] 
 	series << Serie.new(:title=> title,
