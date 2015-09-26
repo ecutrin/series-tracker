@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150926181727) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "episodes", force: :cascade do |t|
     t.integer  "serie_id"
     t.integer  "number"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150926181727) do
     t.string   "name"
   end
 
-  add_index "episodes", ["serie_id"], name: "index_episodes_on_serie_id"
+  add_index "episodes", ["serie_id"], name: "index_episodes_on_serie_id", using: :btree
 
   create_table "series", force: :cascade do |t|
     t.string   "title"
@@ -35,6 +38,6 @@ ActiveRecord::Schema.define(version: 20150926181727) do
     t.integer  "last_episode_watched_id"
   end
 
-  add_index "series", ["show_id"], name: "index_series_on_show_id", unique: true
+  add_index "series", ["show_id"], name: "index_series_on_show_id", unique: true, using: :btree
 
 end
