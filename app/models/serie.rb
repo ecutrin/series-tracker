@@ -1,7 +1,7 @@
 class Serie < ActiveRecord::Base
   has_many :episodes
 
-  attr_reader :title, :picture_url, :show_id, :number_of_seasons
+  attr_reader :title, :picture_url, :show_id, :number_of_seasons, :last_episode_watched_id
 
   BASE_URL = "https://image.tmdb.org/t/p/w185/"
   NOT_FOUND_IMAGE = "/assets/image_not_found.jpg" 
