@@ -1,25 +1,25 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
   adapter: postgresql
+  encoding: unicode
   pool: 5
   timeout: 5000
+  database: series-tracker-dev
 
 development:
   <<: *default
-  database: db/development
+  database: series-tracker-dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test
+  database: series-tracker-test
 
 production:
   <<: *default
-  database: db/production
+  host: ec2-54-163-228-109.compute-1.amazonaws.com
+  username: bjmomedczuelin
+  password: S-5Qnr_8T46l6tB9FMR3AZlmjB
+  database: dft8u7uergiipq
+  port: 5432
