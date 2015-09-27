@@ -17,12 +17,18 @@ describe Serie do
     expect(serie.picture_url).to eq(Serie.NOT_FOUND_IMAGE)
   end
 
-  it "should be able to return Last episode watched" do
-    episode = Episode.create
+  it "should be able to return the Last episode watched" do
+    episode = Episode.create(:number => 1,
+			     :season => 2,
+			     :name => "Happy Birthday")
     serie = Serie.new(:last_episode_watched_id => episode.id)
 
-    actual_episode = serie.last_episode_watched
+    expect(serie.last_episode_watched).to eq("Season 2 Episode 1 - Happy Birthday")
+  end
 
-    expect(actual_episode).to eq(episode)
+  it "should return 'None' if user has not set up the last episode watched" do
+    serie = Serie.new(:last_episode_watched_id => nil)
+
+    expect(serie.last_episode_watched).to eq("None")
   end
 end

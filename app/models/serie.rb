@@ -12,9 +12,10 @@ class Serie < ActiveRecord::Base
 
   def last_episode_watched
     if self[:last_episode_watched_id].nil?
-      return {}
+      return "None"
     end
-    Episode.find(self[:last_episode_watched_id])
+    episode = Episode.find(self[:last_episode_watched_id])
+    "Season #{episode[:season]} Episode #{episode[:number]} - #{episode[:name]}"
   end
 
   def self.BASE_URL
