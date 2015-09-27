@@ -6,7 +6,7 @@
   </tr>
   <% @series.each do |serie| %>
     <tr>
-      <td><img class="serie-thumbnail" src="<%= serie.picture_url %>"/></td>
+      <td><%= image_tag serie.picture_url, class:"serie-thumbnail" %></td>
       <td><%= serie[:title] %></td>
       <td>
 	<%= link_to "Track", track_series_path(serie[:show_id]), method: :post %>
