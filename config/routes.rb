@@ -6,14 +6,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'series#index'
 
-   resources :series do
+   resources :series, only: [:index, :show] do
      member do
        post 'track'
      end
      collection do
        get 'search'
      end
-     resources :episodes do
+     resources :episodes, only: [] do
        member do
 	 post 'last'
        end
