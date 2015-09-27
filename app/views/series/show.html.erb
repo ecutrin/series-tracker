@@ -1,18 +1,27 @@
-<div class="page-header">
+<script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+<div class="jumbotron">
   <h1><%= @serie[:title] %></h1>
   <h2>Last episode watched: Season <%= @serie.last_episode_watched[:season] %> Episode <%= @serie.last_episode_watched[:number] %> - <%= @serie.last_episode_watched[:name] %></h2>
 </div>
-<ul class="nav nav-tabs">
+<div id="tabs">
+  <ul>
   <% @serie[:number_of_seasons].times do |season| %>
-    <li role="presentation" class="active">
-      <a>Season <%= season + 1 %></a>
+    <li><%= link_to "Season #{season}", "#tabs-#{season}" %></li>
+  <% end %>
+  </ul>
+  <% @serie[:number_of_seasons].times do |season| %>
+    <div id=<%= "tabs-#{season}" %>>
       <ul class="list-group">
 	<% @episodes["#{season + 1}"].each do |episode| %>
 	  <li class="list-group-item">
-	  <h6><%= link_to "Episode #{episode[:number]} #{episode[:name]}" , last_series_episode_path(@serie.id, episode.id), method: :post %></h6>
+	  <h6><%= link_to "Episode #{episode[:number]} - #{episode[:name]}" , last_series_episode_path(@serie.id, episode.id), method: :post %></h6>
 	  </li>
 	<% end %>
       </ul>
-    </li>
+    </div>
   <% end %>
-</ul>
+</div>
