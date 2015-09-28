@@ -10,11 +10,11 @@
 <div id="tabs">
   <ul>
   <% @serie[:number_of_seasons].times do |season| %>
-    <li><%= link_to "Season #{season}", "#tabs-#{season}" %></li>
+    <li><%= link_to "Season #{season + 1}", "#tabs-#{season + 1}" %></li>
   <% end %>
   </ul>
   <% @serie[:number_of_seasons].times do |season| %>
-    <div id=<%= "tabs-#{season}" %>>
+    <div id=<%= "tabs-#{season + 1}" %>>
       <ul class="list-group">
 	<% @episodes["#{season + 1}"].each do |episode| %>
 	  <li class="list-group-item">
